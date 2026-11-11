@@ -416,6 +416,99 @@
       margin: 18px 0;
     }
 
+    /* Technical Manual Cards Grid */
+    .manual-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+      margin: 24px 0 32px;
+    }
+
+    .manual-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .manual-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 6px 18px rgba(15, 76, 146, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .manual-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .manual-card h3 {
+      font-size: 19px;
+      color: var(--primary);
+      margin: 0 0 10px;
+    }
+
+    .manual-card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .manual-feature-list {
+      list-style: none;
+      margin: 0 0 24px 0;
+      padding: 0;
+      flex-grow: 1;
+    }
+
+    .manual-feature-list li {
+      font-size: 13px;
+      color: #334155;
+      padding: 4px 0 4px 18px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+
+    .manual-feature-list li::before {
+      content: "-";
+      position: absolute;
+      left: 4px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .manual-open-btn {
+      display: inline-block;
+      text-align: center;
+      background: var(--primary);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .manual-open-btn:hover {
+      background: var(--primary-dark);
+    }
+
     /* Download Cards */
     .download-grid {
       display: grid;
@@ -519,17 +612,10 @@
       color: #f1f5f9;
     }
 
-    .footer-right {
-      text-align: right;
-      color: #64748b;
-    }
-
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       aside.sidebar { display: none; }
-      main.content { padding: 24px 16px 60px; }
+      main.content { padding: 24px 20px 60px; }
       nav.top-nav { display: none; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-right { text-align: center; }
     }
   </style>
 </head>
@@ -549,9 +635,10 @@
       <a href="#overview">Overview</a>
       <a href="#specs">Specifications</a>
       <a href="#connections">Connections</a>
-      <a href="#canopen">CANopen Protocol</a>
-      <a href="#integration-manual">Integration Manual</a>
       <a href="#pycangui">Evaluation Tool</a>
+      <a href="canopen-protocol.html">CANopen Protocol</a>
+      <a href="distributor-manual.html">Integration Manual</a>
+      <a href="#manuals">Technical Manuals</a>
       <a href="#downloads">Downloads</a>
       <span class="version-tag">CVP5-C</span>
     </nav>
@@ -577,42 +664,28 @@
         <li><a href="#power-notes">7. Power Supply & Filtering Notes</a></li>
       </ul>
 
-      <div class="sidebar-section-title">CANopen Protocol</div>
-      <ul class="sidebar-menu">
-        <li><a href="#canopen">8. Communication Interface</a></li>
-        <li><a href="#pdo-interface">9. Process Data Objects (PDO)</a></li>
-        <li><a href="#sdo-dictionary">10. SDO Object Dictionary</a></li>
-        <li><a href="#system-diagnostics">11. System Diagnostics & RGB LED</a></li>
-        <li><a href="#telegram-examples">12. Telegram Examples</a></li>
-      </ul>
-
-      <div class="sidebar-section-title">Distributor Integration Manual</div>
-      <ul class="sidebar-menu">
-        <li><a href="#integration-manual">13. Scope & Master Architecture</a></li>
-        <li><a href="#dist-quickstart">13.1 Master Quick Start Flow</a></li>
-        <li><a href="#dist-telegrams">13.2 Real-Time Telegrams & Timing</a></li>
-        <li><a href="#dist-scaling">13.3 Current Reference Scaling</a></li>
-        <li><a href="#dist-sdo">13.4 SDO Commissioning & Storage</a></li>
-        <li><a href="#dist-nodeid-lss">13.5 Node-ID Setup via SDO & LSS</a></li>
-        <li><a href="#dist-faults">13.6 Diagnostic Fault Decoding</a></li>
-        <li><a href="#dist-code">13.7 Implementation Code (Python & C)</a></li>
-      </ul>
-
       <div class="sidebar-section-title">Evaluation Software</div>
       <ul class="sidebar-menu">
-        <li><a href="#pycangui">14. PyCanGui Testing Utility</a></li>
-        <li><a href="#pcan-compatibility">14.1 PEAK PCAN-USB Interface</a></li>
-        <li><a href="#gui-walkthrough">14.2 Test & Calibration Workflows</a></li>
+        <li><a href="#pycangui">8. PyCanGui Testing Utility</a></li>
+        <li><a href="#pcan-compatibility">8.1 PEAK PCAN-USB Interface</a></li>
+        <li><a href="#gui-walkthrough">8.2 Test & Calibration Workflows</a></li>
       </ul>
 
       <div class="sidebar-section-title">Development Roadmap</div>
       <ul class="sidebar-menu">
-        <li><a href="#roadmap">15. Dual-Output & Digital I/O</a></li>
+        <li><a href="#roadmap">9. Dual-Output & Digital I/O</a></li>
+      </ul>
+
+      <div class="sidebar-section-title">Technical Manuals</div>
+      <ul class="sidebar-menu">
+        <li><a href="#manuals">10. Dedicated Technical Guides</a></li>
+        <li><a href="canopen-protocol.html">CANopen Protocol Manual &rarr;</a></li>
+        <li><a href="distributor-manual.html">Distributor Integration Manual &rarr;</a></li>
       </ul>
 
       <div class="sidebar-section-title">Downloads</div>
       <ul class="sidebar-menu">
-        <li><a href="#downloads">16. Official Datasheet & Files</a></li>
+        <li><a href="#downloads">11. Official Datasheet & Files</a></li>
       </ul>
     </aside>
 
@@ -661,111 +734,116 @@
         <ul>
           <li><strong>Robust Design:</strong> Built to withstand harsh environments, the CVP5-C features protection against power supply polarity inversion and solenoid short circuits (5 ms detection time), ensuring longevity and reliability in demanding conditions.</li>
           <li><strong>Compact Form Factor:</strong> The compact design enables easy installation and integration into a wide range of applications without consuming excessive space.</li>
-          <li><strong>CANopen Integration:</strong> Seamlessly communicate with other devices in your network using the CANopen standard communication protocol, ensuring compatibility and interoperability within your system. The output current can be configured to be controlled by any other CANopen device on the network, from the throttle of a joystick to a press of a button.</li>
-          <li><strong>Fully Customizable:</strong> Tailor the controller settings to your specific needs, allowing for fine adjustments that optimize valve performance and system efficiency. Through the CANopen interface, configure MAX current, OFFSET current, Current Ramps, and Dither Effect.</li>
-          <li><strong>System Diagnostics:</strong> Through the CAN interface it is possible to monitor in real-time the output current and diagnostic states between open-circuit, short-circuit, MAX current reached, and supply voltage limit.</li>
-          <li><strong>Status Indication:</strong> A three-color RGB LED indicator provides at-a-glance information about the system status, simplifying monitoring and troubleshooting.</li>
-          <li><strong>RTOS Powered:</strong> Leveraging the Zephyr RTOS (Real-Time Operating System) provides real-time capabilities and efficient multitasking, enhancing controller performance and reliability.</li>
-          <li><strong>Advanced Control:</strong> Employing advanced PID logic, this controller offers precise and reliable valve control, meeting the demands of applications requiring high precision and responsiveness.</li>
+          <li><strong>CANopen Protocol:</strong> CANopen integration allows communication with other devices and systems, providing access to a broad ecosystem of sensors, actuators, and controllers.</li>
+          <li><strong>Zephyr RTOS Integration:</strong> Built on Zephyr RTOS, the CVP5-C ensures deterministic execution, efficient multitasking, and responsiveness for demanding control tasks.</li>
+          <li><strong>Diagnostics LED:</strong> A 3-color RGB LED indicates the status of the controller, providing visual feedback on operation and troubleshooting.</li>
+          <li><strong>High-Frequency PWM:</strong> 5 kHz PWM output ensures quiet valve operation and low mechanical wear.</li>
+          <li><strong>Adjustable Dither:</strong> Frequency adjustable from 50 to 300 Hz with configurable amplitude (0 to 20%) to virtually eliminate valve spool stiction and hysteresis.</li>
         </ul>
       </section>
 
       <!-- Section: Technical Specifications -->
       <section id="specs" class="doc-section">
         <h2>3. Technical Specifications</h2>
+        
         <table class="data-table">
           <thead>
             <tr>
-              <th>Parameter</th>
-              <th>Specification</th>
-              <th>Unit / Conditions</th>
+              <th style="width: 35%;">Parameter</th>
+              <th style="width: 25%;">Value</th>
+              <th>Notes / Conditions</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Power Supply Voltage (abs. Min-max)</strong></td>
-              <td>12 - 30</td>
-              <td>Vdc</td>
+              <td><strong>Supply Voltage</strong></td>
+              <td>12 - 30 Vdc</td>
+              <td>Rectified and filtered, max ripple &lt; 10%</td>
             </tr>
             <tr>
-              <td><strong>Rectified and Filtered Ripple Voltage (max)</strong></td>
-              <td>10</td>
-              <td>%</td>
+              <td><strong>Recommended Filter Capacitor</strong></td>
+              <td>4700 uF / 35V</td>
+              <td>Electrolytic capacitor on power rails</td>
             </tr>
             <tr>
-              <td><strong>Output Current (adjustable) (min-max)</strong></td>
-              <td>0 - 2.5</td>
-              <td>A</td>
+              <td><strong>Coil Voltage Margin</strong></td>
+              <td>&gt; 1.5 V</td>
+              <td>Supply must exceed nominal valve coil voltage by at least 1.5V</td>
             </tr>
             <tr>
-              <td><strong>Current Absorption without Load (max)</strong></td>
-              <td>30</td>
-              <td>mA</td>
+              <td><strong>Standby Current Absorption</strong></td>
+              <td>30 mA max</td>
+              <td>No load connected</td>
             </tr>
             <tr>
-              <td><strong>Offset Current (adjustable) (min-max)</strong></td>
-              <td>0 - 0.6</td>
-              <td>A</td>
+              <td><strong>Average Power Absorbed</strong></td>
+              <td>35 W</td>
+              <td>Under full rated load</td>
             </tr>
             <tr>
-              <td><strong>Current Regulation (CAN BUS)</strong></td>
-              <td>+/- 1</td>
-              <td>mA (16 bit)</td>
+              <td><strong>Output Current Range</strong></td>
+              <td>0 - 2.5 A</td>
+              <td>Adjustable via CANopen SDO parameters</td>
             </tr>
             <tr>
-              <td><strong>Maximum Absorbed Power (average)</strong></td>
-              <td>35</td>
-              <td>W</td>
+              <td><strong>Offset Current Range</strong></td>
+              <td>0 - 0.6 A</td>
+              <td>Adjustable via CANopen SDO parameters</td>
             </tr>
             <tr>
-              <td><strong>PWM Frequency (fixed)</strong></td>
-              <td>5</td>
-              <td>kHz</td>
+              <td><strong>Current Regulation Precision</strong></td>
+              <td>+/- 1 mA</td>
+              <td>16-bit internal current regulation loop</td>
             </tr>
             <tr>
-              <td><strong>Adjustable Ramp Down Slope</strong></td>
-              <td>0.01 - 50</td>
-              <td>A/s</td>
+              <td><strong>PWM Frequency</strong></td>
+              <td>5 kHz</td>
+              <td>Fixed switching frequency</td>
             </tr>
             <tr>
-              <td><strong>Adjustable Ramp Up Slope</strong></td>
-              <td>0.01 - 50</td>
-              <td>A/s</td>
-            </tr>
-            <tr>
-              <td><strong>Dither Frequency (adjustable)</strong></td>
-              <td>50 - 300 (default 125)</td>
-              <td>Hz (configurable via SDO 0x2105:5)</td>
+              <td><strong>Dither Frequency</strong></td>
+              <td>50 - 300 Hz</td>
+              <td>Adjustable (default 125 Hz via SDO 0x2105:5)</td>
             </tr>
             <tr>
               <td><strong>Dither Amplitude</strong></td>
-              <td>0 to 20</td>
-              <td>% of output current</td>
+              <td>0 - 20%</td>
+              <td>Of nominal configured output current</td>
             </tr>
             <tr>
-              <td><strong>Current Stability (on temp. range)</strong></td>
-              <td>+/- 5</td>
-              <td>mA</td>
+              <td><strong>Ramps (Up and Down)</strong></td>
+              <td>0.01 - 50 A/s</td>
+              <td>Adjustable independent linear acceleration/deceleration</td>
             </tr>
             <tr>
-              <td><strong>Operating Temperature Range</strong></td>
-              <td>-20 ... +70</td>
-              <td>deg C</td>
+              <td><strong>Temperature Stability</strong></td>
+              <td>+/- 5 mA</td>
+              <td>Across full -20 deg C to +70 deg C range</td>
             </tr>
             <tr>
-              <td><strong>Protection Class (CVP5-C M12)</strong></td>
-              <td>IP67</td>
-              <td>Dust and water protection</td>
+              <td><strong>Short Circuit Cutoff Time</strong></td>
+              <td>5 ms</td>
+              <td>Hardware shutdown protection on output short-circuit</td>
             </tr>
             <tr>
-              <td><strong>Weight</strong></td>
-              <td>100</td>
-              <td>g</td>
+              <td><strong>Operating Temperature</strong></td>
+              <td>-20 deg C to +70 deg C</td>
+              <td>Industrial temperature range</td>
             </tr>
             <tr>
-              <td><strong>Package</strong></td>
-              <td>Bag (PE-LD Plastic)</td>
-              <td>Where: Plastic</td>
+              <td><strong>Ingress Protection</strong></td>
+              <td>IP67 (M12) / IP65 (DIN)</td>
+              <td>According to selected connector configuration</td>
+            </tr>
+            <tr>
+              <td><strong>Physical Dimensions</strong></td>
+              <td>77 x 38 x 40.5 mm</td>
+              <td>Excluding mating connector protruding parts</td>
+            </tr>
+            <tr>
+              <td><strong>Unit Weight</strong></td>
+              <td>100 g</td>
+              <td>Encapsulated electronics assembly</td>
             </tr>
           </tbody>
         </table>
@@ -774,66 +852,65 @@
       <!-- Section: Dimensions -->
       <section id="dimensions" class="doc-section">
         <h2>4. Physical Dimensions</h2>
-        <p>The CVP5-C housing features a small footprint designed for direct mounting on hydraulic valve solenoids:</p>
+        <p>The CVP5-C is packaged in an ultra-compact ruggedized plastic enclosure engineered for direct mounting onto hydraulic valve bodies or manifolds:</p>
         <ul>
-          <li><strong>Overall Length:</strong> 77 mm</li>
-          <li><strong>Overall Width:</strong> 38 mm</li>
+          <li><strong>Overall Length:</strong> 77.0 mm</li>
+          <li><strong>Overall Width:</strong> 38.0 mm</li>
           <li><strong>Overall Height:</strong> 40.5 mm</li>
-          <li><strong>Mounting Hole Pitch:</strong> 62.5 mm center-to-center</li>
-          <li><strong>Connector Position:</strong> 20 mm offset from mounting centerline</li>
+          <li><strong>Mounting Hole Pitch:</strong> 62.5 mm</li>
+          <li><strong>Connector Centerline Offset:</strong> 20.0 mm</li>
+          <li><strong>Total Weight:</strong> 100 grams</li>
         </ul>
       </section>
 
       <!-- Section: Connector Options -->
       <section id="connectors" class="doc-section">
         <h2>5. Connector Options</h2>
-        <p>To accommodate diverse installation standards, the CVP5-C is available in two connector configurations:</p>
+        <p>To accommodate diverse mobile hydraulic and industrial machine architectures, the CVP5-C is offered in two standardized connector configurations:</p>
+
         <table class="data-table">
           <thead>
             <tr>
-              <th>Variant</th>
               <th>Connector Type</th>
-              <th>Protection</th>
-              <th>Recommended Usage</th>
+              <th>Protection Rating</th>
+              <th>Application Target</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>CVP5-C-M12</strong></td>
-              <td>M12 Circular Plug</td>
-              <td>IP67</td>
-              <td>Mobile hydraulic machinery, agricultural equipment, exposed outdoor installations</td>
+              <td><strong>M12 4-Pole Circular (A-Coded)</strong></td>
+              <td><strong>IP67</strong> (Dust-tight, temporary water immersion)</td>
+              <td>Heavy mobile machinery, agricultural equipment, off-highway construction vehicles.</td>
             </tr>
             <tr>
-              <td><strong>CVP5-C-DIN</strong></td>
-              <td>DIN EN 175301-803 (Hirschmann ISO 4400)</td>
-              <td>IP65</td>
-              <td>Standard industrial hydraulic power units, plant installations, manifold blocks</td>
+              <td><strong>DIN EN 175301-803 (Form A / Hirschmann ISO 4400)</strong></td>
+              <td><strong>IP65</strong> (Dust-tight, water spray protection)</td>
+              <td>Stationary industrial hydraulics, standard valve coils, factory automation benches.</td>
             </tr>
           </tbody>
         </table>
       </section>
 
-      <!-- Section: Electrical Connections & Pinout -->
+      <!-- Section: Electrical Connections -->
       <section id="connections" class="doc-section">
         <h2>6. Electrical Connections & Pinout (M12)</h2>
-        <p>The electrical interface provides DC power input and differential CANopen lines on a single connector:</p>
-        
+        <p>For the M12 circular connector variant, wiring must follow the standard 4-pin A-coded configuration:</p>
+
         <table class="data-table">
           <thead>
             <tr>
-              <th>Pin Number</th>
-              <th>Wire Color</th>
-              <th>Signal Description</th>
-              <th>Function</th>
+              <th style="width: 15%;">Pin</th>
+              <th style="width: 20%;">Wire Color</th>
+              <th style="width: 25%;">Signal Name</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>PIN 1</strong></td>
               <td>BROWN</td>
-              <td>+V POWER SUPPLY</td>
-              <td>Main DC power supply input (+12 Vdc to +30 Vdc)</td>
+              <td>+Vdc Supply</td>
+              <td>Positive power supply (12 - 30 Vdc)</td>
             </tr>
             <tr>
               <td><strong>PIN 2</strong></td>
@@ -844,8 +921,8 @@
             <tr>
               <td><strong>PIN 3</strong></td>
               <td>BLUE</td>
-              <td>0V POWER SUPPLY (GROUND)</td>
-              <td>Power return reference (GND)</td>
+              <td>0V Ground (GND)</td>
+              <td>System common power ground</td>
             </tr>
             <tr>
               <td><strong>PIN 4</strong></td>
@@ -874,810 +951,9 @@
         </ul>
       </section>
 
-      <!-- Section: CANopen Protocol -->
-      <section id="canopen" class="doc-section">
-        <h2>8. CANopen Communication Interface</h2>
-        <p>The CVP5-C operates as a slave node conforming to the CANopen CiA DS301 and DS401 device profiles:</p>
-        <ul>
-          <li><strong>Default Node-ID:</strong> <code>10</code> (0x0A hexadecimal).</li>
-          <li><strong>Default Bitrate:</strong> <code>250 kbit/s</code> (supported from 10 kbit/s up to 1000 kbit/s).</li>
-          <li><strong>Identifier Format:</strong> 11-bit standard CAN identifier.</li>
-          <li><strong>Heartbeat Period:</strong> 1000 ms (COB-ID <code>0x700 + Node-ID</code> = <code>0x70A</code>).</li>
-        </ul>
-
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Service</th>
-              <th>COB-ID Base</th>
-              <th>Default ID (Node 10)</th>
-              <th>Direction</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>NMT Command</td>
-              <td><code>0x000</code></td>
-              <td><code>0x000</code></td>
-              <td>Master to Slave</td>
-              <td>Network Management state transitions (Start, Stop, Pre-operational, Reset)</td>
-            </tr>
-            <tr>
-              <td>EMCY</td>
-              <td><code>0x080 + Node-ID</code></td>
-              <td><code>0x08A</code></td>
-              <td>Slave to Master</td>
-              <td>Emergency frame on active faults</td>
-            </tr>
-            <tr>
-              <td>TPDO1</td>
-              <td><code>0x180 + Node-ID</code></td>
-              <td><code>0x18A</code></td>
-              <td>Slave to Master</td>
-              <td>Cyclic analog measurements (Output Current, Supply Voltage)</td>
-            </tr>
-            <tr>
-              <td>RPDO1</td>
-              <td><code>0x200 + Node-ID</code></td>
-              <td><code>0x20A</code></td>
-              <td>Master to Slave</td>
-              <td>Real-time current command reference</td>
-            </tr>
-            <tr>
-              <td>TPDO2</td>
-              <td><code>0x280 + Node-ID</code></td>
-              <td><code>0x28A</code></td>
-              <td>Slave to Master</td>
-              <td>Fault flags and diagnostic bytes</td>
-            </tr>
-            <tr>
-              <td>SDO Response</td>
-              <td><code>0x580 + Node-ID</code></td>
-              <td><code>0x58A</code></td>
-              <td>Slave to Master</td>
-              <td>SDO expedited read/write response</td>
-            </tr>
-            <tr>
-              <td>SDO Request</td>
-              <td><code>0x600 + Node-ID</code></td>
-              <td><code>0x60A</code></td>
-              <td>Master to Slave</td>
-              <td>SDO expedited read/write request</td>
-            </tr>
-            <tr>
-              <td>Heartbeat</td>
-              <td><code>0x700 + Node-ID</code></td>
-              <td><code>0x70A</code></td>
-              <td>Slave to Master</td>
-              <td>Periodic node presence (Boot-up: 0x00, Operational: 0x05)</td>
-            </tr>
-            <tr>
-              <td>LSS</td>
-              <td><code>0x7E4 / 0x7E5</code></td>
-              <td><code>0x7E4 / 0x7E5</code></td>
-              <td>Bidirectional</td>
-              <td>Layer Setting Services for Node-ID and baudrate configuration</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Section: Process Data Objects -->
-      <section id="pdo-interface" class="doc-section">
-        <h2>9. Process Data Objects (PDO) Interface</h2>
-
-        <h3>RPDO1 - Current Command Reference (0x200 + Node-ID)</h3>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Byte</th>
-              <th>Signal</th>
-              <th>Format</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Byte 0 - 1</td>
-              <td>EV1_Ref</td>
-              <td>UINT16 (Little-Endian)</td>
-              <td>Current setpoint command scaled to maximum current</td>
-            </tr>
-            <tr>
-              <td>Byte 2 - 7</td>
-              <td>Reserved</td>
-              <td>-</td>
-              <td>Transmit 0x00</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>TPDO1 - Real-Time Telemetry (0x180 + Node-ID)</h3>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Byte</th>
-              <th>Signal</th>
-              <th>Format</th>
-              <th>Unit</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Byte 0 - 1</td>
-              <td>Iread_EV1</td>
-              <td>INT16 (Big-Endian)</td>
-              <td>mA</td>
-              <td>Real-time measured output current through solenoid</td>
-            </tr>
-            <tr>
-              <td>Byte 2 - 3</td>
-              <td>Iread_EV2</td>
-              <td>INT16 (Big-Endian)</td>
-              <td>mA</td>
-              <td>Reports 0 mA on single-output CVP5-C</td>
-            </tr>
-            <tr>
-              <td>Byte 4 - 5</td>
-              <td>Vread_EXT</td>
-              <td>INT16 (Big-Endian)</td>
-              <td>mV</td>
-              <td>External analog input (reports -123 if unused)</td>
-            </tr>
-            <tr>
-              <td>Byte 6 - 7</td>
-              <td>Vread_SPP</td>
-              <td>INT16 (Big-Endian)</td>
-              <td>mV</td>
-              <td>Power supply rail voltage (Vsupply)</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>TPDO2 - Error Flags (0x280 + Node-ID)</h3>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Byte</th>
-              <th>Signal</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Byte 0</td>
-              <td>ErrorEV1</td>
-              <td>Bit 0: Broken wire (open circuit)<br>Bit 1: Short circuit / Overcurrent<br>Bit 2: Supply voltage limit<br>Bit 3: Internal temperature alarm</td>
-            </tr>
-            <tr>
-              <td>Byte 1 - 7</td>
-              <td>Reserved</td>
-              <td>Unused bytes</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Section: SDO Object Dictionary -->
-      <section id="sdo-dictionary" class="doc-section">
-        <h2>10. SDO Object Dictionary</h2>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Index</th>
-              <th>Sub</th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Access</th>
-              <th>Default</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>0x1000</td>
-              <td>0</td>
-              <td>Device Type</td>
-              <td>U32</td>
-              <td>RO</td>
-              <td>0x00000000</td>
-              <td>CiA DS301 profile definition</td>
-            </tr>
-            <tr>
-              <td>0x1001</td>
-              <td>0</td>
-              <td>Error Register</td>
-              <td>U8</td>
-              <td>RO</td>
-              <td>0x00</td>
-              <td>Standard DS301 error register</td>
-            </tr>
-            <tr>
-              <td>0x1010</td>
-              <td>1</td>
-              <td>Store Parameters</td>
-              <td>U32</td>
-              <td>RW</td>
-              <td>-</td>
-              <td>Write 0x65766173 ('save') to store configuration in Flash</td>
-            </tr>
-            <tr>
-              <td>0x1011</td>
-              <td>1</td>
-              <td>Restore Defaults</td>
-              <td>U32</td>
-              <td>RW</td>
-              <td>-</td>
-              <td>Write 0x64616F6C ('load') to restore factory settings</td>
-            </tr>
-            <tr>
-              <td>0x1017</td>
-              <td>0</td>
-              <td>Producer Heartbeat</td>
-              <td>U16</td>
-              <td>RW</td>
-              <td>1000</td>
-              <td>Heartbeat period in milliseconds</td>
-            </tr>
-            <tr>
-              <td>0x1018</td>
-              <td>1</td>
-              <td>Vendor ID</td>
-              <td>U32</td>
-              <td>RO</td>
-              <td>22</td>
-              <td>Galileo Engineering vendor identifier</td>
-            </tr>
-            <tr>
-              <td>0x1018</td>
-              <td>2</td>
-              <td>Product Code</td>
-              <td>U32</td>
-              <td>RO</td>
-              <td>1</td>
-              <td>CVP-CAN controller code</td>
-            </tr>
-            <tr>
-              <td>0x2102</td>
-              <td>1</td>
-              <td>Max Current</td>
-              <td>U16</td>
-              <td>RW</td>
-              <td>1000</td>
-              <td>Maximum output current in mA (up to 2500 mA)</td>
-            </tr>
-            <tr>
-              <td>0x2102</td>
-              <td>2</td>
-              <td>Offset Current</td>
-              <td>U16</td>
-              <td>RW</td>
-              <td>0</td>
-              <td>Minimum initial current threshold in mA (0 to 600 mA)</td>
-            </tr>
-            <tr>
-              <td>0x2102</td>
-              <td>3</td>
-              <td>Ramp Up</td>
-              <td>U16</td>
-              <td>RW</td>
-              <td>1000</td>
-              <td>Current ramp rate up in mA/s (0.01 to 50 A/s)</td>
-            </tr>
-            <tr>
-              <td>0x2102</td>
-              <td>4</td>
-              <td>Ramp Down</td>
-              <td>U16</td>
-              <td>RW</td>
-              <td>1000</td>
-              <td>Current ramp rate down in mA/s (0.01 to 50 A/s)</td>
-            </tr>
-            <tr>
-              <td>0x2102</td>
-              <td>5</td>
-              <td>Dither Amplitude</td>
-              <td>U8</td>
-              <td>RW</td>
-              <td>10</td>
-              <td>Dither amplitude (0 to 20% of output current)</td>
-            </tr>
-            <tr>
-              <td>0x2105</td>
-              <td>5</td>
-              <td>Dither Frequency</td>
-              <td>U16</td>
-              <td>RW</td>
-              <td>125</td>
-              <td>Adjustable frequency range: 50 to 300 Hz (default: 125 Hz)</td>
-            </tr>
-            <tr>
-              <td>0x2106</td>
-              <td>0</td>
-              <td>Node-ID</td>
-              <td>U8</td>
-              <td>RW</td>
-              <td>10</td>
-              <td>CANopen Node-ID (1 to 127). Save & reset required.</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Section: System Diagnostics & RGB LED -->
-      <section id="system-diagnostics" class="doc-section">
-        <h2>11. System Diagnostics & RGB LED Indicator</h2>
-        <p>The CVP5-C controller provides dual diagnostic mechanisms:</p>
-        <ul>
-          <li><strong>Three-Color RGB LED:</strong> Positioned directly on the housing, provides at-a-glance operational status, verifying power, communication, and fault conditions without requiring bus connection.</li>
-          <li><strong>CAN Interface Telemetry:</strong> Real-time status reporting covering open-circuit, solenoid short-circuit (5 ms fast cutoff), maximum current reached, and supply voltage threshold limits.</li>
-        </ul>
-      </section>
-
-      <!-- Section: Telegram Examples -->
-      <section id="telegram-examples" class="doc-section">
-        <h2>12. Telegram Examples</h2>
-        
-        <h4>Start Node into Operational State (NMT)</h4>
-        <pre><code>CAN-ID: 0x000   DLC: 2   DATA: 01 0A</code></pre>
-        <p class="small">Where 01 = Start command, 0A = Target Node-ID 10.</p>
-
-        <h4>Command EV1 to 500 mA (RPDO1)</h4>
-        <pre><code>CAN-ID: 0x20A   DLC: 4   DATA: F4 01 00 00</code></pre>
-        <p class="small">0x01F4 represents 500 mA in unsigned 16-bit little-endian format.</p>
-
-        <h4>Save All Parameters to Flash (SDO)</h4>
-        <pre><code>CAN-ID: 0x60A   DLC: 8   DATA: 23 10 10 01 73 61 76 65
-Response:
-CAN-ID: 0x58A   DLC: 8   DATA: 60 10 10 01 00 00 00 00</code></pre>
-      </section>
-
-      <!-- Section: Distributor Integration Manual -->
-      <section id="integration-manual" class="doc-section">
-        <h2>13. Distributor Integration Manual</h2>
-        
-        <div class="callout">
-          <div class="callout-title">Distributor & OEM Integration Guide</div>
-          This section provides the complete reference specification for machine OEMs, distributor engineers, and software developers who are implementing a custom CANopen master controller (on PLC, industrial PC, or embedded microcontroller) to operate the CVP5-C without depending on the PyCanGui evaluation software.
-        </div>
-
-        <p>The CVP5-C operates as a standard <strong>CANopen slave</strong> device (CiA 301 / CiA 408 profile). In normal machine operation, real-time control is executed exclusively via cyclic <strong>Process Data Objects (PDO)</strong>, while <strong>Service Data Objects (SDO)</strong> are reserved for initial commissioning, parameter calibration, and non-volatile flash storage.</p>
-
-        <h3>Device Profile & Integration Scope</h3>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th style="width: 25%;">Parameter</th>
-              <th>Delivered Configuration & Integration Rule</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Target Hardware</strong></td>
-              <td>Galileo Engineering CVP5-C (Proportional Valve Controller)</td>
-            </tr>
-            <tr>
-              <td><strong>Valve Solenoid Outputs</strong></td>
-              <td><strong>1 active channel (EV1)</strong>. Solenoid channel EV2 is inactive in this single-valve model.</td>
-            </tr>
-            <tr>
-              <td><strong>Digital I/O</strong></td>
-              <td>Digital outputs and digital inputs are not installed in this single-valve model (reserved for the 2-output model in development).</td>
-            </tr>
-            <tr>
-              <td><strong>External Analog Input</strong></td>
-              <td>Unconnected. TPDO1 reports <code>Vread_EXT = -123 mV</code> (hex <code>0xFF85</code>), indicating input not available.</td>
-            </tr>
-            <tr>
-              <td><strong>CAN Identifier Format</strong></td>
-              <td>11-bit standard CAN identifiers (CAN 2.0A).</td>
-            </tr>
-            <tr>
-              <td><strong>Default Communication</strong></td>
-              <td>Node-ID: <strong>10</strong> (decimal), <strong>0x0A</strong> (hex). Bitrate: <strong>250 kbit/s</strong>.</td>
-            </tr>
-            <tr>
-              <td><strong>Active Real-Time PDOs</strong></td>
-              <td><strong>1 RPDO</strong> (RPDO1: command setpoint) and <strong>2 TPDOs</strong> (TPDO1: analog feedback, TPDO2: error status byte).</td>
-            </tr>
-            <tr>
-              <td><strong>Producer Heartbeat</strong></td>
-              <td>Emitted on <code>0x700 + Node-ID</code> (0x70A) every <strong>1000 ms</strong> (configurable via SDO 0x1017:00).</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Subsection 13.1 -->
-        <div id="dist-quickstart">
-          <h3>13.1 Master Quick Start Flow</h3>
-          <p>Follow this verified step-by-step sequence to establish real-time closed-loop control from any CANopen master PLC or script:</p>
-          
-          <ol>
-            <li><strong>Bus Physical Verification:</strong> Connect CAN_H, CAN_L, and GND. Ensure the bus line is properly terminated with 120 ohm resistors at both ends.</li>
-            <li><strong>Boot-up Detection:</strong> Apply power (12 - 30 Vdc). The CVP5-C boots up within 200 ms and emits its initial boot-up frame on CAN-ID <code>0x70A</code> with payload <code>00</code>.</li>
-            <li><strong>NMT Operational Transition:</strong> Master transmits an NMT Start frame to transition the node into Operational state:
-              <pre><code>CAN-ID: 0x000   DLC: 2   DATA: 01 0A</code></pre>
-              Upon receiving this command, the controller enters Operational mode. The producer heartbeat updates to <code>0x05</code>.
-            </li>
-            <li><strong>Cyclic Setpoint Transmission:</strong> Master sends cyclic current commands using <strong>RPDO1</strong> (CAN-ID <code>0x20A</code>). Recommended master cycle time: <strong>10 ms to 50 ms</strong>:
-              <pre><code>CAN-ID: 0x20A   DLC: 4   DATA: [raw_lo raw_hi 00 00]</code></pre>
-            </li>
-            <li><strong>Cyclic Telemetry Acquisition:</strong> Master parses <strong>TPDO1</strong> received every 100 ms from CAN-ID <code>0x18A</code> for actual measured coil current and battery supply voltage:
-              <pre><code>CAN-ID: 0x18A   DLC: 8   DATA: [I_hi I_lo 00 00 FF 85 Vs_hi Vs_lo]</code></pre>
-            </li>
-            <li><strong>Continuous Fault Supervision:</strong> Master parses <strong>TPDO2</strong> received every 100 ms from CAN-ID <code>0x28A</code> to monitor solenoid continuity and system integrity:
-              <pre><code>CAN-ID: 0x28A   DLC: 3   DATA: [ErrEV1 00 00]</code></pre>
-            </li>
-          </ol>
-        </div>
-
-        <!-- Subsection 13.2 -->
-        <div id="dist-telegrams">
-          <h3>13.2 Real-Time Telegrams & Bus Timing</h3>
-          <p>The table below summarizes the exact frame formats, COB-IDs, byte offsets, and endianness for the default Node-ID 10 (0x0A):</p>
-
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Telegram</th>
-                <th>COB-ID</th>
-                <th>Direction</th>
-                <th>Cycle / Trigger</th>
-                <th>DLC</th>
-                <th>Byte Mapping & Endianness</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>NMT Command</strong></td>
-                <td><code>0x000</code></td>
-                <td>Master -> Node</td>
-                <td>On startup / state change</td>
-                <td>2</td>
-                <td>Byte 0: Command (<code>01</code>=Start, <code>02</code>=Stop, <code>80</code>=Pre-Op, <code>82</code>=Reset Comm)<br>Byte 1: Target Node-ID (<code>0A</code>)</td>
-              </tr>
-              <tr>
-                <td><strong>Heartbeat / Boot-up</strong></td>
-                <td><code>0x70A</code></td>
-                <td>Node -> Master</td>
-                <td>1000 ms periodic</td>
-                <td>1</td>
-                <td>Byte 0: NMT state (<code>00</code>=Boot-up, <code>04</code>=Stopped, <code>05</code>=Operational, <code>7F</code>=Pre-Operational)</td>
-              </tr>
-              <tr>
-                <td><strong>RPDO1 (EV1 Command)</strong></td>
-                <td><code>0x20A</code></td>
-                <td>Master -> Node</td>
-                <td>Cyclic (10 - 50 ms)</td>
-                <td>4</td>
-                <td>Bytes 0..1: <code>CH1_Ref</code> (Unsigned 16-bit, <strong>Little-endian</strong>)<br>Bytes 2..3: Reserved (send <code>00 00</code>)</td>
-              </tr>
-              <tr>
-                <td><strong>TPDO1 (Analog Feedback)</strong></td>
-                <td><code>0x18A</code></td>
-                <td>Node -> Master</td>
-                <td>100 ms periodic</td>
-                <td>8</td>
-                <td>Bytes 0..1: <code>Iread_EV1</code> (Signed 16-bit, <strong>Big-endian</strong>, mA)<br>Bytes 2..3: Reserved (<code>00 00</code>)<br>Bytes 4..5: <code>Vread_EXT</code> (Signed 16-bit, Big-endian, mV; <code>-123</code> = disconnected)<br>Bytes 6..7: <code>Vread_SPP</code> (Signed 16-bit, Big-endian, mV supply voltage)</td>
-              </tr>
-              <tr>
-                <td><strong>TPDO2 (Fault Telemetry)</strong></td>
-                <td><code>0x28A</code></td>
-                <td>Node -> Master</td>
-                <td>100 ms periodic</td>
-                <td>3</td>
-                <td>Byte 0: <code>ErrorEV1</code> (Unsigned 8-bit fault bitmask)<br>Bytes 1..2: Reserved (<code>00 00</code>)</td>
-              </tr>
-              <tr>
-                <td><strong>EMCY (Emergency)</strong></td>
-                <td><code>0x08A</code></td>
-                <td>Node -> Master</td>
-                <td>Asynchronous on fault</td>
-                <td>8</td>
-                <td>Bytes 0..1: Emergency error code<br>Byte 2: Error register (0x1001)<br>Byte 3: EV1 fault bitmask<br>Bytes 4..7: Reserved</td>
-              </tr>
-              <tr>
-                <td><strong>SDO Request</strong></td>
-                <td><code>0x60A</code></td>
-                <td>Master -> Node</td>
-                <td>On demand</td>
-                <td>8</td>
-                <td>Byte 0: Command specifier<br>Bytes 1..2: Object Index (Little-endian)<br>Byte 3: Sub-index<br>Bytes 4..7: Payload data (Little-endian)</td>
-              </tr>
-              <tr>
-                <td><strong>SDO Response</strong></td>
-                <td><code>0x58A</code></td>
-                <td>Node -> Master</td>
-                <td>Upon SDO request</td>
-                <td>8</td>
-                <td>Byte 0: Response specifier (<code>60</code>=Success, <code>80</code>=Abort)<br>Bytes 1..2: Object Index<br>Byte 3: Sub-index<br>Bytes 4..7: Data or abort code</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="small">Note: Endianness differs between RPDO1 (command reference is Little-endian) and TPDO1 (measured current and voltages are transmitted Big-endian).</p>
-        </div>
-
-        <!-- Subsection 13.3 -->
-        <div id="dist-scaling">
-          <h3>13.3 Current Reference Scaling & Conversion Formula</h3>
-          <p>The proportional coil current is regulated according to the active parameters stored in object <code>0x2102</code> (Maximum Current, Offset Current, and Resolution Bits). The PLC master must convert the target current in milliamps (I_mA) to the raw integer value expected in RPDO1:</p>
-
-          <div class="callout">
-            <div class="callout-title">Setpoint Conversion Formula</div>
-            <div style="font-family: ui-monospace, Consolas, monospace; font-size: 13.5px; line-height: 1.7; margin-top: 8px;">
-              <strong>max_raw</strong> = (2<sup>resolution_bits</sup>) - 1<br><br>
-              <strong>if</strong> (I_mA &le; 0):<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;raw = 0<br>
-              <strong>else if</strong> (I_max &le; I_offset):<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;raw = (I_mA &ge; I_max) ? max_raw : 0<br>
-              <strong>else</strong>:<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;clamped_I = clamp(I_mA, I_offset, I_max)<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;raw = round( (clamped_I - I_offset) &times; max_raw / (I_max - I_offset) )<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;raw = clamp(raw, 0, max_raw)
-            </div>
-          </div>
-
-          <h4>Practical Calculation Example (Default Settings)</h4>
-          <ul>
-            <li>Configured Maximum Current (I_max): <code>1000 mA</code> (Object <code>0x2102:01</code>)</li>
-            <li>Configured Offset Current (I_offset): <code>200 mA</code> (Object <code>0x2102:02</code>)</li>
-            <li>Command Resolution: <code>8 bits</code> (max_raw = 255, Object <code>0x2102:0A</code>)</li>
-            <li>Target Setpoint: <code>600 mA</code></li>
-          </ul>
-          <pre><code>Span = 1000 mA - 200 mA = 800 mA
-Effective current above offset = 600 mA - 200 mA = 400 mA
-Ratio = 400 / 800 = 0.5 (50.0%)
-raw = round(0.5 * 255) = round(127.5) = 128 = 0x0080
-
-RPDO1 Transmitted Payload (Little-endian):
-CAN-ID: 0x20A   DLC: 4   DATA: 80 00 00 00</code></pre>
-
-          <h4>16-bit High Resolution Mode</h4>
-          <p>When object <code>0x2102:0A</code> is configured to <code>16 bits</code> (max_raw = 65535), the resolution is 1 mA / 65.5 counts, offering sub-milliamp resolution:</p>
-          <pre><code>raw = round(0.5 * 65535) = 32768 = 0x8000
-
-RPDO1 Transmitted Payload (Little-endian):
-CAN-ID: 0x20A   DLC: 4   DATA: 00 80 00 00</code></pre>
-        </div>
-
-        <!-- Subsection 13.4 -->
-        <div id="dist-sdo">
-          <h3>13.4 SDO Commissioning & Parameter Storage</h3>
-          <p>SDO services use expedited transfers on COB-ID <code>0x600 + Node-ID</code> (requests) and <code>0x580 + Node-ID</code> (responses). Below are standard master commissioning sequences:</p>
-
-          <h4>1. Verify Device Identification (Object 0x1018)</h4>
-          <p>Read Vendor ID (sub 1), Product Code (sub 2), Revision (sub 3), and Serial Number (sub 4):</p>
-          <pre><code>; Read Vendor ID (0x1018:01)
-TX: CAN ID 60Ah   DLC 8   DATA: 40 18 10 01 00 00 00 00
-RX: CAN ID 58Ah   DLC 8   DATA: 43 18 10 01 80 07 00 00   ; Vendor ID
-
-; Read Serial Number (0x1018:04)
-TX: CAN ID 60Ah   DLC 8   DATA: 40 18 10 04 00 00 00 00
-RX: CAN ID 58Ah   DLC 8   DATA: 43 18 10 04 [4-byte serial number]</code></pre>
-
-          <h4>2. Configure Valve Operating Parameters (Object 0x2102)</h4>
-          <p>Example: Setting EV1 Maximum Current to <code>1200 mA</code> (0x04B0, 16-bit unsigned, sub-index 1):</p>
-          <pre><code>TX: CAN ID 60Ah   DLC 8   DATA: 2B 02 21 01 B0 04 00 00
-RX: CAN ID 58Ah   DLC 8   DATA: 60 02 21 01 00 00 00 00   ; 0x60 indicates successful write</code></pre>
-
-          <p>Example: Setting Dither Frequency to <code>125 Hz</code> (Object <code>0x2105:05</code>, range 50 - 300 Hz):</p>
-          <pre><code>TX: CAN ID 60Ah   DLC 8   DATA: 2B 05 21 05 7D 00 00 00   ; 125 decimal = 0x007D
-RX: CAN ID 58Ah   DLC 8   DATA: 60 05 21 05 00 00 00 00</code></pre>
-
-          <h4>3. Commit Parameters to Non-Volatile Flash (Object 0x1010:01)</h4>
-          <p>To persist modified settings across power cycles, write the ASCII signature <code>"save"</code> (hex <code>0x73 0x61 0x76 0x65</code>, little-endian word <code>0x65766173</code>) to object <code>0x1010:01</code>:</p>
-          <pre><code>TX: CAN ID 60Ah   DLC 8   DATA: 23 10 10 01 73 61 76 65
-RX: CAN ID 58Ah   DLC 8   DATA: 60 10 10 01 00 00 00 00   ; Stored successfully</code></pre>
-
-          <h4>4. Restore Factory Defaults (Object 0x1011:01)</h4>
-          <p>To wipe user calibration and revert all parameters to factory defaults, write the ASCII signature <code>"load"</code> (hex <code>0x6C 0x6F 0x61 0x64</code>) to object <code>0x1011:01</code>:</p>
-          <pre><code>TX: CAN ID 60Ah   DLC 8   DATA: 23 11 10 01 6C 6F 61 64
-RX: CAN ID 58Ah   DLC 8   DATA: 60 11 10 01 00 00 00 00   ; Reset scheduled</code></pre>
-        </div>
-
-        <!-- Subsection 13.5 -->
-        <div id="dist-nodeid-lss">
-          <h3>13.5 Node-ID Configuration via SDO & CiA 305 LSS</h3>
-          <p>The CVP5-C supports two independent methods for changing its CANopen Node-ID:</p>
-
-          <h4>Method A: Direct SDO Write (Recommended when current Node-ID is known)</h4>
-          <ol>
-            <li>Write new Node-ID to object <code>0x2000:00</code> (e.g., set Node-ID to <code>11</code> / <code>0x0B</code>):
-              <pre><code>TX: CAN ID 60Ah   DLC 8   DATA: 2F 00 20 00 0B 00 00 00
-RX: CAN ID 58Ah   DLC 8   DATA: 60 00 20 00 00 00 00 00</code></pre>
-            </li>
-            <li>Store parameters to flash:
-              <pre><code>TX: CAN ID 60Ah   DLC 8   DATA: 23 10 10 01 73 61 76 65
-RX: CAN ID 58Ah   DLC 8   DATA: 60 10 10 01 00 00 00 00</code></pre>
-            </li>
-            <li>Reset communication stack using NMT frame:
-              <pre><code>TX: CAN ID 000h   DLC 2   DATA: 82 0A</code></pre>
-            </li>
-            <li>Wait for new boot-up message on CAN-ID <code>0x70B</code> (Node 11).</li>
-          </ol>
-
-          <h4>Method B: Layer Setting Services (CiA 305 LSS)</h4>
-          <p>When the existing Node-ID is unknown or unconfigured, selective LSS configuration can be performed using master request ID <code>0x7E5</code> and slave response ID <code>0x7E4</code>, addressing the device by its 128-bit identity (Vendor ID, Product Code, Revision, Serial Number):</p>
-          <pre><code>; 1. Switch Selective Mode by Identity (Vendor, Product, Revision, Serial)
-TX: CAN ID 7E5h   DLC 8   DATA: 40 [Vendor ID 4-bytes LE] 00 00 00
-TX: CAN ID 7E5h   DLC 8   DATA: 41 [Product Code 4-bytes LE] 00 00 00
-TX: CAN ID 7E5h   DLC 8   DATA: 42 [Revision Number 4-bytes LE] 00 00 00
-TX: CAN ID 7E5h   DLC 8   DATA: 43 [Serial Number 4-bytes LE] 00 00 00
-RX: CAN ID 7E4h   DLC 8   DATA: 44 00 00 00 00 00 00 00   ; Acknowledged
-
-; 2. Configure Node-ID to 11 (0x0B)
-TX: CAN ID 7E5h   DLC 8   DATA: 11 0B 00 00 00 00 00 00
-RX: CAN ID 7E4h   DLC 8   DATA: 11 00 00 00 00 00 00 00   ; Accepted
-
-; 3. Store LSS Configuration to Non-Volatile Memory
-TX: CAN ID 7E5h   DLC 8   DATA: 17 00 00 00 00 00 00 00
-RX: CAN ID 7E4h   DLC 8   DATA: 17 00 00 00 00 00 00 00   ; Saved
-
-; 4. Switch LSS Global Mode back to Waiting
-TX: CAN ID 7E5h   DLC 8   DATA: 04 00 00 00 00 00 00 00</code></pre>
-        </div>
-
-        <!-- Subsection 13.6 -->
-        <div id="dist-faults">
-          <h3>13.6 Diagnostic Fault Decoding & Safety Watchdog</h3>
-          <p>TPDO2 publishes the 8-bit fault bitmask for EV1 (Object <code>0x6421:01</code>) every 100 ms on CAN-ID <code>0x280 + Node-ID</code> (0x28A):</p>
-
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th style="width: 10%;">Bit</th>
-                <th style="width: 25%;">Fault Name</th>
-                <th style="width: 15%;">Detection Speed</th>
-                <th>Diagnostic Description & Master Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>Bit 0</code></td>
-                <td><strong>Maximum Current Exceeded</strong></td>
-                <td>Immediate</td>
-                <td>Coil current exceeded the configured maximum current limit in object 0x2102:01.</td>
-              </tr>
-              <tr>
-                <td><code>Bit 1</code></td>
-                <td><strong>Open Circuit Detected</strong></td>
-                <td>10 ms</td>
-                <td>Coil resistance is infinite or wiring is disconnected. Solenoid cannot be energized.</td>
-              </tr>
-              <tr>
-                <td><code>Bit 2</code></td>
-                <td><strong>Current Control / Short Circuit</strong></td>
-                <td><strong>5 ms</strong> fast cutoff</td>
-                <td>Current regulation loop out of bounds or solenoid short-circuit detected. The hardware driver automatically cuts off output drive within 5 ms to protect switching silicon.</td>
-              </tr>
-              <tr>
-                <td><code>Bit 3</code></td>
-                <td><strong>CAN Bus Error</strong></td>
-                <td>Immediate</td>
-                <td>CAN communication errors, error passive warning, or excessive retransmissions detected on the bus interface.</td>
-              </tr>
-              <tr>
-                <td><code>Bit 4</code></td>
-                <td><strong>Supply Voltage Error</strong></td>
-                <td>Continuous</td>
-                <td>Power supply voltage is outside the rated 12 - 30 Vdc operating window (undervoltage or overvoltage threshold exceeded).</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="callout warning">
-            <div class="callout-title">Master Safety Watchdog Rules</div>
-            <ul>
-              <li><strong>Continuous Heartbeat Supervision:</strong> The PLC master must supervise heartbeat reception on <code>0x700 + Node-ID</code>. If heartbeat is absent for more than 3 consecutive periods (timeout threshold: 2.0 s), the master must assume communication loss and disable machine hydraulic enable signals.</li>
-              <li><strong>Immediate Command Clamping:</strong> If Bit 1 (Open Circuit) or Bit 2 (Short Circuit) is asserted in TPDO2, the PLC master must immediately ramp the commanded reference down to 0 mA to allow safe fault clearing.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Subsection 13.7 -->
-        <div id="dist-code">
-          <h3>13.7 Master Implementation Code (Python & C)</h3>
-          <p>Integrators can adapt these verified parsing and encoding routines into their host controller runtime:</p>
-
-          <h4>Python Reference Implementation</h4>
-          <pre><code># Python CANopen Master Encoding & Decoding Helpers
-
-def encode_rpdo1(current_ma: float, max_current_ma: float = 1000, 
-                 offset_ma: float = 200, resolution_bits: int = 8) -> bytes:
-    """Encodes physical current (mA) into a 4-byte RPDO1 payload (Little-endian)."""
-    max_raw = (1 &lt;&lt; resolution_bits) - 1
-    if current_ma &lt;= 0:
-        raw = 0
-    elif max_current_ma &lt;= offset_ma:
-        raw = max_raw if current_ma &gt;= max_current_ma else 0
-    else:
-        clamped_current = max(offset_ma, min(current_ma, max_current_ma))
-        raw = round(((clamped_current - offset_ma) * max_raw) / (max_current_ma - offset_ma))
-    raw = max(0, min(raw, max_raw))
-    # 2 bytes raw little-endian + 2 bytes padding
-    return raw.to_bytes(2, byteorder='little') + b'\x00\x00'
-
-
-def decode_tpdo1(payload: bytes):
-    """Decodes 8-byte TPDO1 payload (Big-endian fields). Returns (I_ma, V_ext, V_spp)."""
-    if len(payload) &lt; 8:
-        raise ValueError("TPDO1 payload must be 8 bytes")
-    i_meas_ma = int.from_bytes(payload[0:2], byteorder='big', signed=True)
-    vext_mv = int.from_bytes(payload[4:6], byteorder='big', signed=True)
-    vspp_mv = int.from_bytes(payload[6:8], byteorder='big', signed=True)
-    v_ext = None if vext_mv == -123 else (vext_mv / 1000.0)
-    v_spp = None if vspp_mv == -123 else (vspp_mv / 1000.0)
-    return i_meas_ma, v_ext, v_spp
-
-
-def decode_tpdo2(payload: bytes):
-    """Decodes 3-byte TPDO2 fault status. Returns active fault list."""
-    if len(payload) &lt; 1:
-        return []
-    err_byte = payload[0]
-    faults = []
-    if err_byte &amp; 0x01: faults.append("MAX_CURRENT_EXCEEDED")
-    if err_byte &amp; 0x02: faults.append("OPEN_CIRCUIT")
-    if err_byte &amp; 0x04: faults.append("CURRENT_CONTROL_ERROR")
-    if err_byte &amp; 0x08: faults.append("CAN_BUS_ERROR")
-    if err_byte &amp; 0x10: faults.append("SUPPLY_VOLTAGE_ERROR")
-    return faults</code></pre>
-
-          <h4>ANSI C / C++ Reference Implementation</h4>
-          <pre><code>// ANSI C CANopen Master Driver Snippet for Embedded PLC / Controllers
-#include &lt;stdint.h&gt;
-#include &lt;string.h&gt;
-
-#pragma pack(push, 1)
-typedef struct {
-    uint16_t ch1_ref;     // Little-endian raw current command
-    uint16_t reserved;    // Always 0x0000
-} CVP5C_RPDO1_t;
-
-typedef struct {
-    int16_t  iread_ev1;   // Big-endian coil current in mA
-    int16_t  unused_ev2;  // Not used
-    int16_t  vread_ext;   // Big-endian external voltage (-123 mV if unused)
-    int16_t  vread_spp;   // Big-endian supply voltage in mV
-} CVP5C_TPDO1_t;
-
-typedef struct {
-    uint8_t  error_ev1;   // Bit 0..4 fault flags
-    uint8_t  unused1;
-    uint8_t  unused2;
-} CVP5C_TPDO2_t;
-#pragma pack(pop)
-
-// Convert mA to RPDO1 raw command
-void CVP5C_BuildRPDO1(uint8_t dest[4], float current_ma, float max_ma, float offset_ma, uint8_t bits) {
-    uint16_t max_raw = (1 &lt;&lt; bits) - 1;
-    uint16_t raw = 0;
-    if (current_ma &gt; offset_ma &amp;&amp; max_ma &gt; offset_ma) {
-        float norm = (current_ma - offset_ma) / (max_ma - offset_ma);
-        if (norm &gt; 1.0f) norm = 1.0f;
-        raw = (uint16_t)(norm * max_raw + 0.5f);
-    }
-    dest[0] = (uint8_t)(raw &amp; 0xFF);
-    dest[1] = (uint8_t)((raw &gt;&gt; 8) &amp; 0xFF);
-    dest[2] = 0x00;
-    dest[3] = 0x00;
-}
-
-// Unpack big-endian TPDO1 analog feedback
-void CVP5C_ParseTPDO1(const uint8_t src[8], int16_t *pCurrent_mA, float *pSupply_V) {
-    int16_t raw_current = (int16_t)((src[0] &lt;&lt; 8) | src[1]);
-    int16_t raw_vspp    = (int16_t)((src[6] &lt;&lt; 8) | src[7]);
-    if (pCurrent_mA) *pCurrent_mA = raw_current;
-    if (pSupply_V)   *pSupply_V = (float)raw_vspp / 1000.0f;
-}</code></pre>
-        </div>
-      </section>
-
       <!-- Section: Evaluation Software (PyCanGui) -->
       <section id="pycangui" class="doc-section">
-        <h2>14. PyCanGui Testing & Evaluation Utility</h2>
+        <h2>8. PyCanGui Testing & Evaluation Utility</h2>
         
         <div class="callout">
           <div class="callout-title">Purpose of Provided Software</div>
@@ -1685,14 +961,14 @@ void CVP5C_ParseTPDO1(const uint8_t src[8], int16_t *pCurrent_mA, float *pSupply
         </div>
 
         <div id="pcan-compatibility">
-          <h3>14.1 PEAK PCAN-USB Interface Compatibility</h3>
+          <h3>8.1 PEAK PCAN-USB Interface Compatibility</h3>
           <p>PyCanGui communicates over the CAN bus via the industry-standard <strong>PEAK PCAN-USB</strong> adapter.</p>
           <p>For hardware specifications, user manuals, and official drivers, visit the official PEAK-System product page:</p>
           <p><a href="https://www.peak-system.com/PCAN-USB.199.0.html" target="_blank" style="font-weight: 700; color: var(--primary);">PEAK-System PCAN-USB Official Product Page</a></p>
         </div>
 
         <div id="gui-walkthrough">
-          <h3>14.2 Testing & Calibration Features</h3>
+          <h3>8.2 Testing & Calibration Features</h3>
           
           <div class="figure-card">
             <img src="assets/images/Main.png" alt="PyCanGui Main Screen">
@@ -1738,16 +1014,58 @@ void CVP5C_ParseTPDO1(const uint8_t src[8], int16_t *pCurrent_mA, float *pSupply
 
       <!-- Section: Development Roadmap -->
       <section id="roadmap" class="doc-section">
-        <h2>15. Product Development Roadmap</h2>
+        <h2>9. Product Development Roadmap</h2>
         <div class="callout development">
           <div class="callout-title">Version Currently in Development</div>
           <p>An expanded hardware version featuring <strong>2 PID proportional outputs</strong> (for bidirectional or dual valve control) and <strong>2 digital ON/OFF outputs</strong> is currently under active development at Galileo Engineering.</p>
         </div>
       </section>
 
+      <!-- Section: Technical Manuals Portals (In Fondo) -->
+      <section id="manuals" class="doc-section">
+        <h2>10. Technical Manuals & Integration Guides</h2>
+        
+        <p>Complete communication profiles, object dictionaries, and master implementation guides are available in dedicated technical documentation portals:</p>
+
+        <div class="manual-cards-grid">
+          <div class="manual-card">
+            <div>
+              <div class="manual-badge">Protocol Reference</div>
+              <h3>CANopen Protocol Specification</h3>
+              <p>Comprehensive CiA 301 / CiA 408 communication profile for the CVP5-C proportional valve controller. Includes real-time PDO mapping (RPDO1, TPDO1, TPDO2), complete SDO Object Dictionary with all index and sub-index parameters, 3-color RGB LED diagnostics, and raw bus telegram examples.</p>
+              <ul class="manual-feature-list">
+                <li>CiA 301 / 408 standard communication profiles</li>
+                <li>RPDO1 setpoint & TPDO1/2 feedback mapping</li>
+                <li>Complete 0x1000 - 0x6441 SDO Object Dictionary</li>
+                <li>RGB status LED & fault code tables</li>
+                <li>Expedited SDO telegram examples</li>
+              </ul>
+            </div>
+            <a href="canopen-protocol.html" class="manual-open-btn">Open CANopen Protocol Manual &rarr;</a>
+          </div>
+
+          <div class="manual-card">
+            <div>
+              <div class="manual-badge">Distributor & OEM Guide</div>
+              <h3>Distributor Integration Manual</h3>
+              <p>Distributor-facing engineering guide for developers and OEMs creating a custom CANopen master PLC driver or embedded controller without PyCanGui. Includes master startup sequencing, real-time bus timing, mathematical current scaling equations, SDO commissioning flows, CiA 305 LSS Node-ID configuration, safety watchdog rules, and ready-to-run Python and ANSI C driver implementations.</p>
+              <ul class="manual-feature-list">
+                <li>Master startup checklist & timing sequence</li>
+                <li>Current reference scaling formulas (8-bit / 16-bit)</li>
+                <li>SDO parameter commissioning & flash storage</li>
+                <li>CiA 305 Layer Setting Services (LSS) procedures</li>
+                <li>Continuous safety watchdog & fault handling rules</li>
+                <li>Ready-to-use Python and ANSI C driver code</li>
+              </ul>
+            </div>
+            <a href="distributor-manual.html" class="manual-open-btn">Open Distributor Integration Manual &rarr;</a>
+          </div>
+        </div>
+      </section>
+
       <!-- Section: Downloads -->
       <section id="downloads" class="doc-section">
-        <h2>16. Downloads & Documentation Files</h2>
+        <h2>11. Downloads & Documentation Files</h2>
         
         <div class="download-grid">
           <div class="download-card">
@@ -1769,11 +1087,11 @@ void CVP5C_ParseTPDO1(const uint8_t src[8], int16_t *pCurrent_mA, float *pSupply
           </div>
 
           <div class="download-card">
-            <h4>Distributor Integration Manual</h4>
-            <p>Standalone distributor-facing CANopen integration manual (HTML printable) with complete message layouts and programming procedures.</p>
+            <h4>Technical Documentation Portals</h4>
+            <p>Direct access to dedicated technical manuals for protocol reference and master controller integration.</p>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <a href="#integration-manual" class="download-btn" style="flex: 1;">View Section</a>
-              <a href="distributor-manual.html" target="_blank" class="download-btn secondary" style="flex: 1;">Standalone Page</a>
+              <a href="canopen-protocol.html" class="download-btn secondary" style="flex: 1;">CANopen Reference</a>
+              <a href="distributor-manual.html" class="download-btn secondary" style="flex: 1;">Distributor Manual</a>
             </div>
           </div>
         </div>
@@ -1810,16 +1128,15 @@ void CVP5C_ParseTPDO1(const uint8_t src[8], int16_t *pCurrent_mA, float *pSupply
       });
     });
 
-    // Update active state in sidebar on scroll
-    const trackedElements = document.querySelectorAll('section.doc-section, div[id^="dist-"], div[id="pcan-compatibility"], div[id="gui-walkthrough"]');
+    const sections = document.querySelectorAll('section.doc-section, div[id="pcan-compatibility"], div[id="gui-walkthrough"]');
     const navLinks = document.querySelectorAll('aside.sidebar a');
 
     window.addEventListener('scroll', () => {
       let current = '';
-      trackedElements.forEach(el => {
-        const elTop = el.offsetTop - 130;
-        if (window.pageYOffset >= elTop) {
-          current = el.getAttribute('id');
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
         }
       });
 
