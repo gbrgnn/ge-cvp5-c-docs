@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Galileo Engineering - CVP5 CANopen & PyCanGui Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Portale di documentazione tecnica ufficiale Galileo Engineering per la centralina elettrovalvola CANopen serie CVP5 e il software di collaudo e calibrazione PyCanGui.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/app_icon_v2.ico" type="image/x-icon">
+  
+  <!-- Theme: Vue / Themeable -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  
+  <style>
+    :root {
+      --theme-color: #0f4c92;
+      --theme-color-secondary: #d71920;
+      --sidebar-width: 300px;
+    }
+    
+    /* Brand styling */
+    .app-name-link {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #0f4c92 !important;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      padding: 12px 0;
+    }
+    .app-name-link img {
+      max-height: 40px;
+      border-radius: 6px;
+    }
+    
+    /* Coverpage customization */
+    section.cover {
+      background: linear-gradient(135deg, #0b2545 0%, #134074 50%, #001220 100%) !important;
+      color: #ffffff;
+    }
+    section.cover .cover-main {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section.cover h1 {
+      color: #ffffff;
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    section.cover h1 small {
+      color: #64b5f6;
+      font-size: 1.3rem;
+      display: block;
+      margin-top: 10px;
+      font-weight: 400;
+    }
+    section.cover p {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      margin: 1.5rem auto;
+    }
+    section.cover .cover-actions a {
+      margin: 8px 6px;
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    section.cover .cover-actions a.primary {
+      background: #0077b6;
+      color: #fff;
+      border: 2px solid #0077b6;
+    }
+    section.cover .cover-actions a.primary:hover {
+      background: #023e8a;
+      border-color: #023e8a;
+    }
+    section.cover .cover-actions a.secondary {
+      background: rgba(255,255,255,0.12);
+      color: #ffffff;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    section.cover .cover-actions a.secondary:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: #ffffff;
+    }
+    
+    /* Badges & Tables */
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
+    .badge-blue { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    .badge-green { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+    .badge-red { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+    .badge-amber { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+
+    /* Tables */
+    .markdown-section table {
+      display: table;
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2rem 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .markdown-section th {
+      background-color: #0f4c92;
+      color: #ffffff;
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+    }
+    .markdown-section td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .markdown-section tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    
+    /* Callout alert cards */
+    .callout {
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-left: 4px solid #0f4c92;
+      background: #f0f7ff;
+      border-radius: 0 8px 8px 0;
+    }
+    .callout.warning {
+      border-left-color: #f59e0b;
+      background: #fffbeb;
+    }
+    .callout.danger {
+      border-left-color: #ef4444;
+      background: #fef2f2;
+    }
+    .callout.success {
+      border-left-color: #10b981;
+      background: #ecfdf5;
+    }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    /* Cards grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .doc-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .doc-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(15,76,146,0.12);
+      border-color: #0f4c92;
+    }
+    .doc-card h3 {
+      margin-top: 0;
+      color: #0f4c92;
+    }
+    .doc-card a.btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 14px;
+      background: #0f4c92;
+      color: #ffffff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .doc-card a.btn:hover {
+      background: #0a3363;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">Caricamento portale documentazione Galileo Engineering...</div>
+  
+  <script>
+    window.$docsify = {
+      name: 'Galileo Engineering CVP5',
+      logo: 'assets/images/app_icon_v2.png',
+      repo: 'https://github.com/gbrgnn/GE_PyCAN_GUI',
+      coverpage: true,
+      loadSidebar: true,
+      loadNavbar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Cerca nella documentazione...',
+        noData: 'Nessun risultato trovato!',
+        depth: 4
+      },
+      copyCode: {
+        buttonText: 'Copia',
+        errorText: 'Errore',
+        successText: 'Copiato!'
+      },
+      pagination: {
+        previousText: 'Precedente',
+        nextText: 'Successivo',
+        crossChapter: true
+      }
+    }
+  </script>
+  
+  <!-- Docsify Core and Plugins -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+</body>
+</html>
