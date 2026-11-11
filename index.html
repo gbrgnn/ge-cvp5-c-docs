@@ -626,7 +626,7 @@
           </div>
           <div class="spec-pill">
             <div class="spec-pill-label">Dither Frequency</div>
-            <div class="spec-pill-val">125 Hz (fixed)</div>
+            <div class="spec-pill-val">50 - 300 Hz (adj.)</div>
           </div>
           <div class="spec-pill">
             <div class="spec-pill-label">Protection Rating</div>
@@ -720,9 +720,9 @@
               <td>A/s</td>
             </tr>
             <tr>
-              <td><strong>Dither Frequency (fixed)</strong></td>
-              <td>125</td>
-              <td>Hz</td>
+              <td><strong>Dither Frequency (adjustable)</strong></td>
+              <td>50 - 300 (default 125)</td>
+              <td>Hz (configurable via SDO 0x2105:5)</td>
             </tr>
             <tr>
               <td><strong>Dither Amplitude</strong></td>
@@ -1178,7 +1178,7 @@
               <td>U16</td>
               <td>RW</td>
               <td>125</td>
-              <td>Fixed default frequency: 125 Hz</td>
+              <td>Adjustable frequency range: 50 to 300 Hz (default: 125 Hz)</td>
             </tr>
             <tr>
               <td>0x2106</td>
