@@ -1,14 +1,14 @@
-# Repository & Istruzioni per la Pubblicazione GitHub Pages
+# Repository & Pubblicazione GitHub Pages
 
 <span class="badge badge-blue">Hosting: GitHub Pages</span>
 <span class="badge badge-green">CI/CD: GitHub Actions Ready</span>
-<span class="badge badge-amber">Motore: Docsify (Zero Build)</span>
+<span class="badge badge-amber">Motore: Docsify</span>
 
-In questa pagina sono raccolti i collegamenti a tutti i repository dell'ecosistema Galileo Engineering e le istruzioni dettagliate per pubblicare questo portale di documentazione online su **GitHub Pages**.
+In questa pagina sono descritti i riferimenti di progetto e le opzioni per la gestione e configurazione del portale su **GitHub Pages**.
 
 ---
 
-## 📂 Mappa dei Repository di Progetto
+## Mappa dei Repository
 
 | Componente | Riferimento | Descrizione |
 | :--- | :--- | :--- |
@@ -17,61 +17,26 @@ In questa pagina sono raccolti i collegamenti a tutti i repository dell'ecosiste
 
 ---
 
-## 🚀 Come Pubblicare Questo Portale su GitHub Pages
+## Opzioni per Modificare l'Indirizzo Web (URL)
 
-La cartella `ge-cvp5-c-docs` è un repository Git completo e autonomo, dotato di configurazione `.nojekyll` e workflow automatico GitHub Actions `.github/workflows/deploy.yml`.
+L'indirizzo predefinito attuale assegnato da GitHub e:
+`https://gbrgnn.github.io/ge-cvp5-c-docs/`
 
-Seguire questi semplici passaggi per renderlo pubblico su Internet:
+E possibile modificare l'URL in tre modi diversi:
 
-### Passo 1: Crea un nuovo repository su GitHub
-1. Accedere al proprio account GitHub (es. `https://github.com/gbrgnn` o organizzazione `GalileoEng1`).
-2. Creare un nuovo repository pubblico denominato, ad esempio:
-   ```
-   ge-cvp5-c-docs
-   ```
-   *(lasciare vuoto: non aggiungere README, .gitignore o licenza iniziale).*
+### 1. Ridenominazione del Repository
+Se si desidera un percorso differente sotto il proprio profilo (ad esempio `https://gbrgnn.github.io/cvp5-docs/` oppure `https://gbrgnn.github.io/cvp5/`):
+- Andare su GitHub nel repository &rarr; **Settings** &rarr; **General**.
+- Modificare il nome del repository nel campo **Repository name** e premere **Rename**.
+- L'URL di GitHub Pages si aggiornera automaticamente.
 
-### Passo 2: Collega il repository locale e fai il Push
-Aprire PowerShell nella cartella `ge-cvp5-c-docs` ed eseguire:
+### 2. Trasferimento all'Organizzazione Aziendale
+Se si desidera che il sito risieda sotto l'account aziendale **GalileoEng1**:
+- Andare su GitHub in **Settings** &rarr; in fondo alla pagina cliccare su **Transfer ownership**.
+- Indicare come nuovo proprietario `GalileoEng1`.
+- L'indirizzo diventera: `https://GalileoEng1.github.io/ge-cvp5-c-docs/`.
 
-```powershell
-# Entra nella cartella della documentazione
-cd "c:\Drive\Lavoro\GalileoEngineering\ELETTROVALVOLA CAN\ge-cvp5-c-docs"
-
-# Collega il remote GitHub (sostituire con il tuo URL se diverso)
-git remote add origin https://github.com/gbrgnn/ge-cvp5-c-docs.git
-
-# Rinomina il branch in main (se necessario) e invia i file
-git branch -M main
-git push -u origin main
-```
-
-### Passo 3: Abilita GitHub Pages nelle impostazioni
-1. Nel repository GitHub appena creato, andare su **Settings** (in alto a destra).
-2. Nel menu laterale sinistro, cliccare su **Pages**.
-3. Sotto **Build and deployment**:
-   - **Opzione A (Consigliata via Actions):** In *Source*, selezionare **GitHub Actions**. Il workflow `.github/workflows/deploy.yml` incluso eseguirà il deploy in automatico a ogni push!
-   - **Opzione B (Deploy diretto da Branch):** In *Source*, selezionare *Deploy from a branch*, impostare Branch: `main` e cartella: `/ (root)`, quindi premere **Save**.
-4. Dopo circa 60 secondi, il sito sarà accessibile pubblicamente all'indirizzo:
-   ```
-   https://<tuo-utente>.github.io/ge-cvp5-c-docs/
-   ```
-
----
-
-## 💻 Come Testare il Portale in Locale (Anteprima)
-
-È possibile visualizzare e navigare il sito sul proprio PC prima di effettuare il push online, senza installare strumenti complessi:
-
-### Metodo 1: Tramite Python (Già disponibile sul sistema)
-```powershell
-cd "c:\Drive\Lavoro\GalileoEngineering\ELETTROVALVOLA CAN\ge-cvp5-c-docs"
-python -m http.server 3000
-```
-Aprire il browser su: [http://localhost:3000](http://localhost:3000).
-
-### Metodo 2: Tramite Docsify CLI (Opzionale)
-```powershell
-npx docsify-cli serve .
-```
-Aprire il browser su: [http://localhost:3000](http://localhost:3000).
+### 3. Utilizzo di un Dominio Aziendale Personalizzato (Custom Domain)
+Se Galileo Engineering dispone di un dominio web (ad esempio `galileoengineering.com` o `.it`), e possibile pubblicare il sito sotto un terzo livello aziendale, ad esempio:
+`https://cvp5.galileoengineering.it` oppure `https://docs.galileoengineering.it`
+- Configurazione: nel repository GitHub &rarr; **Settings** &rarr; **Pages** &rarr; **Custom domain**, inserire il dominio desiderato e configurare il record CNAME sul proprio provider DNS.

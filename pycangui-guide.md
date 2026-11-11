@@ -5,22 +5,22 @@
 <span class="badge badge-amber">Hardware: PEAK PCAN-USB</span>
 <span class="badge badge-blue">Piattaforma: Windows 10/11</span>
 
-**PyCanGui** è l'ambiente software desktop ufficiale di Galileo Engineering per il collaudo, la diagnostica e la calibrazione delle elettrovalvole proporzionali CANopen serie **CVP5**.
+**PyCanGui** e l'ambiente software desktop ufficiale di Galileo Engineering per il collaudo, la diagnostica e la calibrazione delle elettrovalvole proporzionali CANopen serie **CVP5**.
 
 ![PyCanGui Main Screen](assets/images/Main.png)
 
 ---
 
-## 💻 Requisiti di Sistema
+## Requisiti di Sistema
 
 - **Sistema Operativo:** Windows 10 / Windows 11 (64-bit).
 - **Adattatore CAN:** PEAK System PCAN-USB (o compatibile PCAN-USB Pro/FD).
 - **Driver:** PEAK PCAN-Basic API (inclusi ed installati automaticamente con il pacchetto di setup di PyCanGui).
-- **Velocità Bus Predefinita:** 250.000 bit/s (250 kbit/s).
+- **Velocita Bus Predefinita:** 250.000 bit/s (250 kbit/s).
 
 ---
 
-## 🚀 Avvio del Programma
+## Avvio del Programma
 
 ### Utilizzo con Installer Windows (Consigliato)
 Dopo aver completato l'installazione tramite l'eseguibile di setup (`GE_PyCAN_GUI_Setup_v1.1.0.exe`):
@@ -28,8 +28,8 @@ Dopo aver completato l'installazione tramite l'eseguibile di setup (`GE_PyCAN_GU
 2. Avviare l'applicazione dal collegamento sul Desktop **GE PyCAN GUI**.
 3. Selezionare l'interfaccia (es. `PCAN_USBBUS1`), verificare il Node-ID (default `10`) e cliccare su **Connect**.
 
-### Modalità Simulazione (Senza Hardware)
-Per dimostrazioni, test di layout o sviluppo senza valvola collegata, è possibile avviare il software in simulazione:
+### Modalita Simulazione (Senza Hardware)
+Per dimostrazioni o verifiche di interfaccia senza valvola collegata, e possibile avviare il software in simulazione:
 ```powershell
 python -m ge_pycan_gui --simulate
 ```
@@ -41,11 +41,11 @@ python -m ge_pycan_gui --channel PCAN_USBBUS1 --bitrate 250000 --node-id 10
 
 ---
 
-## 🎛️ Funzionalità dell'Interfaccia
+## Funzionalita dell'Interfaccia
 
 ### 1. Barra di Connessione & Gestione Stato
-- **Pulsante di Connessione Dinamico:** Un unico controllo intuitivo che passa da *Connect* a *Disconnect* con indicazione visiva dello stato.
-- **Rilevamento Hot-Unplug (Novità v1.0.0):** Il thread di ricezione RX rileva istantaneamente se l'adattatore USB viene scollegato o se la valvola perde alimentazione, riportando l'interfaccia in stato di sicurezza ed evitando blocchi o crash dell'applicazione.
+- **Pulsante di Connessione Dinamico:** Un unico controllo intuitivo che commuta tra *Connect* e *Disconnect* con indicazione visiva dello stato.
+- **Rilevamento Hot-Unplug:** Il thread di ricezione RX rileva istantaneamente se l'adattatore USB viene scollegato o se la valvola perde alimentazione, riportando l'interfaccia in stato di sicurezza ed evitando blocchi dell'applicazione.
 
 ---
 
@@ -53,7 +53,7 @@ python -m ge_pycan_gui --channel PCAN_USBBUS1 --bitrate 250000 --node-id 10
 - **Slider Setpoint:** Permette di regolare in tempo reale la corrente desiderata su EV1 (e su EV2, se configurata).
 - **Misura Reale (mA):** Visualizza la corrente effettivamente misurata tramite feedback TPDO1.
 - **Tensioni di Sistema:** Monitoraggio costante della tensione di alimentazione ($V_{supply}$) e della tensione ausiliaria ($V_{ext}$).
-- **Rilevamento Intelligente Mono/Bi-Valvola (Novità v1.1.0):** Se la centralina collegata è a singolo solenoide (CVP5-A o CVP5-C), i controlli del canale EV2 vengono automaticamente disabilitati e contrassegnati con l'indicazione `N.A.`, mantenendo l'interfaccia pulita e priva di allarmi fittizi.
+- **Rilevamento Intelligente Mono/Bi-Valvola:** Se la centralina collegata e a singolo solenoide (CVP5-A o CVP5-C), i controlli del canale EV2 vengono automaticamente disabilitati e contrassegnati con l'indicazione `N.A.`, mantenendo l'interfaccia pulita e priva di allarmi fittizi.
 
 ---
 
@@ -67,18 +67,18 @@ Il grafico visualizza l'andamento dinamico della corrente:
 ---
 
 ### 4. Browser del Dizionario Oggetti CANopen (SDO)
-Permette l'ispezione e la modifica completa di qualsiasi parametro del firmware:
+Permette l'ispezione e la modifica completa di qualsiasi parametro del dispositivo:
 
 ![Dizionario Oggetti](assets/images/dictionary.png)
 
-- **Filtro per Categorie (Novità v1.1.0):**
+- **Filtro per Categorie:**
   - *All objects:* Vista completa dell'intero dizionario.
-  - *Communication:* Oggetti 0x1000 - 0x1018 (Heartbeat, NMT, Identity, Store).
-  - *Manufacturer:* Oggetti 0x2100 - 0x2107 (Guadagni PID, dither, calibrazione correnti).
-  - *Device profile:* Parametri standard CiA DS401.
-- **Casella di Ricerca Istantanea:** Ricerca per nome dell'oggetto, indice esadecimale o tipologia di accesso (RO/RW).
+  - *Communication:* Oggetti standard 0x1000 - 0x1018 (Heartbeat, NMT, Identity, Store).
+  - *Manufacturer:* Parametri specifici CVP5 0x2100 - 0x2107 (Guadagni PID, dither, calibrazione correnti).
+  - *Device profile:* Parametri profilo DS401.
+- **Casella di Ricerca:** Ricerca per nome dell'oggetto, indice esadecimale o tipologia di accesso (RO/RW).
 - **Box Guida CANopen Integrata:** Promemoria visuale dei COB-ID base, posizione dei byte e regole di temporizzazione direttamente nella scheda.
-- **Salvataggio Persistente:** Pulsante per il comando di memorizzazione in Flash (`0x1010:1` - `save`).
+- **Salvataggio Persistente:** Comando di memorizzazione in Flash (`0x1010:1` - `save`).
 
 ---
 
@@ -113,13 +113,13 @@ PyCanGui include una suite automatica per verificare la dinamica della valvola e
 ---
 
 ### 6. Mappatura & Linearizzazione Portata
-La scheda **Mapping** consente di impostare una curva a 10 punti per correggere le non linearità intrinseche dell'idraulica (zona morta iniziale e saturazione finale):
+La scheda **Mapping** consente di impostare una curva a 10 punti per correggere le non linearita intrinseche dell'idraulica (zona morta iniziale e saturazione finale):
 
 ![Curva di Linearizzazione](assets/images/mapping.png)
 
 ---
 
 ### 7. Monitor Pacchetti Bus CAN
-Per attività di collaudo avanzato o supporto all'integrazione su macchine, la schermata **Can Bus Packets** fornisce il monitoraggio completo dei frame in transito:
+Per attivita di collaudo o supporto all'integrazione su macchine, la schermata **Can Bus Packets** fornisce il monitoraggio completo dei frame in transito:
 
 ![Can Bus Packets](assets/images/Can_bus_packets.png)

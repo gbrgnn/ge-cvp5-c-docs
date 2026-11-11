@@ -23,73 +23,112 @@
     /* Brand styling */
     .app-name-link {
       font-weight: 700;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: #0f4c92 !important;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       justify-content: center;
-      padding: 12px 0;
+      padding: 16px 0 10px;
     }
     .app-name-link img {
-      max-height: 40px;
-      border-radius: 6px;
+      max-height: 48px;
+      max-width: 170px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 0;
+    }
+    .sidebar-nav strong {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
     }
     
-    /* Coverpage customization */
+    /* Coverpage customization - Professional Light Theme */
     section.cover {
-      background: linear-gradient(135deg, #0b2545 0%, #134074 50%, #001220 100%) !important;
-      color: #ffffff;
+      background: #ffffff !important;
+      background: linear-gradient(180deg, #f8fafc 0%, #eef2f6 100%) !important;
+      color: #0f172a;
     }
     section.cover .cover-main {
-      max-width: 900px;
+      max-width: 820px;
       margin: 0 auto;
     }
+    section.cover .cover-main img {
+      max-height: 110px;
+      max-width: 260px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 20px auto;
+      display: block;
+    }
     section.cover h1 {
-      color: #ffffff;
-      font-size: 2.8rem;
+      color: #0f4c92;
+      font-size: 2.2rem;
       font-weight: 800;
+      letter-spacing: -0.02em;
       margin-bottom: 0.5rem;
     }
     section.cover h1 small {
-      color: #64b5f6;
-      font-size: 1.3rem;
-      display: block;
-      margin-top: 10px;
-      font-weight: 400;
-    }
-    section.cover p {
+      color: #475569;
       font-size: 1.15rem;
+      display: block;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    section.cover blockquote {
+      font-size: 1.05rem;
       line-height: 1.6;
-      color: #e2e8f0;
+      color: #334155;
       margin: 1.5rem auto;
+      border-left: 3px solid #0f4c92;
+      background: #ffffff;
+      padding: 12px 18px;
+      border-radius: 0 6px 6px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+    section.cover ul {
+      text-align: left;
+      display: inline-block;
+      color: #334155;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 1rem 0;
+    }
+    section.cover .cover-actions {
+      margin-top: 1.5rem;
     }
     section.cover .cover-actions a {
-      margin: 8px 6px;
+      margin: 6px 8px;
       display: inline-block;
-      padding: 12px 24px;
-      border-radius: 8px;
+      padding: 10px 22px;
+      border-radius: 6px;
       font-weight: 600;
+      font-size: 0.92rem;
       text-decoration: none;
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
     }
     section.cover .cover-actions a.primary {
-      background: #0077b6;
-      color: #fff;
-      border: 2px solid #0077b6;
+      background: #0f4c92;
+      color: #ffffff;
+      border: 1px solid #0f4c92;
     }
     section.cover .cover-actions a.primary:hover {
-      background: #023e8a;
-      border-color: #023e8a;
+      background: #0a3363;
+      border-color: #0a3363;
     }
     section.cover .cover-actions a.secondary {
-      background: rgba(255,255,255,0.12);
-      color: #ffffff;
-      border: 2px solid rgba(255,255,255,0.4);
+      background: #ffffff;
+      color: #0f4c92;
+      border: 1px solid #cbd5e1;
     }
     section.cover .cover-actions a.secondary:hover {
-      background: rgba(255,255,255,0.25);
-      border-color: #ffffff;
+      background: #f1f5f9;
+      border-color: #0f4c92;
     }
     
     /* Badges & Tables */
@@ -201,8 +240,8 @@
   
   <script>
     window.$docsify = {
-      name: 'Galileo Engineering CVP5',
-      logo: 'assets/images/app_icon_v2.png',
+      name: 'Galileo Engineering',
+      logo: 'assets/images/galileo_logo.png',
       repo: 'https://github.com/gbrgnn/GE_PyCAN_GUI',
       coverpage: true,
       loadSidebar: true,

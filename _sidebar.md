@@ -1,10 +1,10 @@
 - **Panoramica**
   - [Introduzione & Architettura](README.md)
-  - [Changelog & Novità](changelog.md)
+  - [Changelog & Note di Rilascio](changelog.md)
 
 - **Centralina & Elettrovalvola**
   - [Hardware & Specifiche CVP5](centralina-hardware.md)
-  - [Modalità di Controllo & Funzionalità](firmware-nrf52.md)
+  - [Modalita di Controllo & Funzionalita](firmware-nrf52.md)
   - [Protocollo CANopen & Dizionario](canopen-protocol.md)
   - [Manuale Integrazione Distributori](distributor-manual.html ':target=_blank')
 
